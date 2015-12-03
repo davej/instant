@@ -25,6 +25,9 @@ on('/instant/events', function(ev) {
 
   // resolve the URL
   var url = parse(ev.url)
+  
+  // Remove query and hash strings from browser's location
+  var normalizedLocation = location.href.split('#')[0].split('?')[0]
 
   // reload the page
   if (url.href == location.href) {
