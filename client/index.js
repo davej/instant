@@ -2,13 +2,25 @@ var on = require('sendevent')
   , parse = require('./url')
   , find = require('./find')
   , replace = require('./replace')
+  , connectionLost = require('./connectionLost')
 
 var token
+var latestHeartbeatTime
 
 on('/instant/events', function(ev) {
   if (ev.token) {
     if (!token) token = ev.token
     if (token != ev.token) return location.reload()
+    setInterval(function() {
+      if (latestHeartbeatTime) {
+        var diff = Date.now() - latestHeartbeatTime
+        if (diff > 1000 * 12) connectionLost()
+      }
+    }, 1000 * 10)
+  }
+
+  if (typeof ev.heartbeat === 'number') {
+    latestHeartbeatTime = Date.now()
   }
 
   // reload page if it contains an element with the given class name
@@ -25,7 +37,7 @@ on('/instant/events', function(ev) {
 
   // resolve the URL
   var url = parse(ev.url)
-  
+
   // Remove query and hash strings
   var normalizedLocationHref = location.href.split('#')[0].split('?')[0]
 
