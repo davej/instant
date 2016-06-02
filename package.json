@@ -1,5 +1,5 @@
 {
-  "name": "instant",
+  "name": "@davej/instant",
   "version": "1.10.0",
   "main": "lib",
   "author": "Felix Gnass <fgnass@gmail.com>",
@@ -11,10 +11,10 @@
     "livereload",
     "css"
   ],
-  "homepage": "https://github.com/fgnass/instant",
+  "homepage": "https://github.com/davej/instant",
   "repository": {
     "type": "git",
-    "url": "http://github.com/fgnass/instant.git"
+    "url": "http://github.com/davej/instant.git"
   },
   "scripts": {
     "test": "mocha --require should",
