@@ -1,5 +1,6 @@
 {
   "name": "@davej/instant",
+  "private": false,
   "version": "1.10.0",
   "main": "lib",
   "author": "Felix Gnass <fgnass@gmail.com>",
